@@ -2,7 +2,8 @@ class CartsController < ApplicationController
   ## TODO Escreva a lógica dos carrinhos aqui
 
   def show
-    render json: { PING: 'PONG' }
+    binding.pry
+    render json: { id: current_cart.uuid }
   end
 
   def update
