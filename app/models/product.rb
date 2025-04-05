@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  has_many :items, depedent: :destroy
+  has_many :items, dependent: :destroy
   has_many :carts, through: :items
 
   validates_presence_of :name, :price
