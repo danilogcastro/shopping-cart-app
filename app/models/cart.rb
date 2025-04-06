@@ -6,6 +6,8 @@ class Cart < ApplicationRecord
 
   enum :status, { active: 0, abandoned: 1}
 
+  scope :active, ->{ where(status: 'active') }
+
   def calculate_total
     items.joins(:product).sum('quantity * products.price')
   end

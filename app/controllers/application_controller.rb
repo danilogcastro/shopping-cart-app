@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   include ActionController::Cookies
 
   def current_cart
-    @current_cart ||= Cart.find_by(uuid: cookies.signed[:cart_uuid]) || create_cart
+    @current_cart ||= Cart.active.find_by(uuid: cookies.signed[:cart_uuid]) || create_cart
   end
   
   def create_cart
