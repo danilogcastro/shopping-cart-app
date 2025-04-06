@@ -1,8 +1,6 @@
 class CartsController < ApplicationController
-  ## TODO Escreva a lógica dos carrinhos aqui
-
   def show
-    render json: { id: current_cart.uuid }
+    render :show, locals: { cart: current_cart }
   end
   
   def update
@@ -16,9 +14,23 @@ class CartsController < ApplicationController
     end
   end
 
-  # QUAL É EXATAMENTE O SENTIDO DESSE ENDPOINT?
+  def delete_item
+    @item = Item.find_by(product_id: item_params[:product_id], cart_id: current_cart.id)
+
+    return render json: { error: "Carrinho não possui este produto" } if @item.blank?
+
+    if @item.destroy
+      render :delete_item, locals: { cart: current_cart }
+    else
+      render json: { error: "Não foi possível remover item do carrinho"}
+    end
+  end
+
+  # ENDPOINT ME PARECE REDUNDANTE
+  # NÃO VEJO DIFERENÇA DE COMPORTAMENTO
+  # EM RELAÇÃO À ACTION update
   def add_item
-    'PONG'
+    # TODO
   end
 
   private
