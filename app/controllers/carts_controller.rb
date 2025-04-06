@@ -16,21 +16,15 @@ class CartsController < ApplicationController
 
   def delete_item
     @item = Item.find_by(product_id: item_params[:product_id], cart_id: current_cart.id)
-
+    
     return render json: { error: "Carrinho não possui este produto" } if @item.blank?
-
+    
+    # REVISITAR ESTA LÓGICA - É PARA REMOVER O PRODUTO OU REMOVER UMA UNIDADE DO PRODUTO?
     if @item.destroy
       render :delete_item, locals: { cart: current_cart }
     else
       render json: { error: "Não foi possível remover item do carrinho"}
     end
-  end
-
-  # ENDPOINT ME PARECE REDUNDANTE
-  # NÃO VEJO DIFERENÇA DE COMPORTAMENTO
-  # EM RELAÇÃO À ACTION update
-  def add_item
-    # TODO
   end
 
   private
