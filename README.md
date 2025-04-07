@@ -214,5 +214,10 @@ Executar os testes:
 bundle exec rspec
 ```
 
-### Como enviar seu projeto
-Salve seu código em um versionador de código (GitHub, GitLab, Bitbucket) e nos envie o link publico. Se achar necessário, informe no README as instruções para execução ou qualquer outra informação relevante para correção/entendimento da sua solução.
+Com Docker:
+
+```
+docker compose build
+docker compose up
+```
+
